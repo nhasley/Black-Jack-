@@ -1,3 +1,78 @@
+* {
+  box-sizing: border-box;
+}
+
+body {
+  text-align: center;
+  margin: 0;
+  font-family: Helvetica, sans-serif;
+  height: 100vh;
+  display: grid;
+  background-color: green;
+  grid-template-columns: 1fr;
+  grid-template-rows: 1fr 3fr 1fr 50px;
+  grid-template-areas:
+    "hdr"
+    "brd"
+    "btn"
+    "ftr";
+}
+
+header {
+  grid-area: hdr;
+}
+
+h1 {
+  display: flex;
+  justify-content: center;
+}
+
+.score-board {
+  display: flex;
+  padding: 10px;
+  line-height: 25px;
+  margin: 0 auto;
+  margin-top: 10px;
+  background-color: rgb(120, 196, 140);
+  border-radius: 10%;
+  width: 30vmin;
+}
+
+main {
+  grid-area: brd;
+  background-color: rgb(120, 196, 140);
+  border: 1px solid yellow;
+  margin: 20px;
+  height: 55vmin;
+}
+
+.dealer-board {
+  display: flex;
+  justify-content: flex-start;
+  margin-top: 20px;
+  margin-left: 20px;
+}
+
+.player-board {
+  display: flex;
+  justify-content: center;
+  margin-top: -20px;
+}
+
+.control {
+  grid-area: btn;
+}
+
+footer {
+  grid-area: ftr;
+}
+
+button {
+  padding: 10px;
+  margin: 0 10px;
+  border-radius: 10%;
+}
+
 /* CARD CSS */
 @charset "UTF-8";
 .card {

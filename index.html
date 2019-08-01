@@ -12,24 +12,36 @@
     <header>
       <h1>Black Jack Extravaganza</h1>
       <div class="turn">Let's Play!</div>
-      <button onclick="start">Start</button>
-      <!-- start/reset button -->
+      <div class="score-board">
+        <div class="score-text">
+          <div class="curBet">Current Bet:</div>
+          <div class="totAmt">Total Amount:</div>
+          <button id="bet" class="bet1" onclick="bet">Bet $5</button>
+        </div>
+      </div>
     </header>
 
     <main>
       <div class="game-board">
-        <div class="dealer"></div>
+        <div class="dealer-board">
+          Dealer:
+          <div class="cards"></div>
+        </div>
         <div class="deck"></div>
-        <div class="player"></div>
+        <div class="player-board">
+          Player:
+          <div class="cards"></div>
+        </div>
       </div>
     </main>
 
-    <div class="curBet">Current Bet</div>
-    <div class="totAmt">Total Amount</div>
-
-    <button onclick="hitMe">Hit me</button>
-    <button onclick="stay">Stay</button>
-    <button onclick="bet">Bet $5</button>
+    <div class="control">
+      <button onclick="start">Start</button>
+      <!-- start/reset button -->
+      <button onclick="hitMe">Hit me</button>
+      <button onclick="stay">Stay</button>
+      <!-- <button onclick="bet">Bet $5</button> -->
+    </div>
 
     <footer>
       <p class="message">Created by Nova Hasley</p>
