@@ -8,9 +8,27 @@
     <link rel="stylesheet" href="css/main.css" />
     <script defer src="js/main.js"></script>
   </head>
-  <body>
-    <h1>Black Jack Extravaganza</h1>
-    <div class="dealer"></div>
-    <div class="player"></div>
+  <body class="game">
+    <header>
+      <h1>Black Jack Extravaganza</h1>
+      <div class="turn">Let's Play!</div>
+      <button onclick="start">Start</button>
+      <!-- start/reset button -->
+    </header>
+
+    <main>
+      <div class="game-board">
+        <div class="dealer"></div>
+        <div class="player"></div>
+        <div class="deck"></div>
+      </div>
+    </main>
+
+    <button onclick="hitMe">Hit me</button>
+    <button onclick="stay"></button>
+
+    <footer>
+      <p class="message">Created by Nova Hasley</p>
+    </footer>
   </body>
 </html>
