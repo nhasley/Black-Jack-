@@ -8,43 +8,22 @@
     <link rel="stylesheet" href="css/main.css" />
     <script defer src="js/main.js"></script>
   </head>
-  <body class="game">
-    <header>
-      <h1>Black Jack Extravaganza</h1>
-      <div class="turn">Let's Play!</div>
-      <div class="score-board">
-        <div class="score-text">
-          <div class="curBet">Current Bet:</div>
-          <div class="totAmt">Total Amount:</div>
-          <button id="bet" class="bet1" onclick="bet">Bet $5</button>
-        </div>
-      </div>
-    </header>
-
+  <body>
     <main>
-      <div class="game-board">
-        <div class="dealer-board">
-          Dealer:
-          <div class="cards"></div>
-        </div>
-        <div class="deck"></div>
-        <div class="player-board">
-          Player:
-          <div class="cards"></div>
-        </div>
-      </div>
-    </main>
+      <h1>Black Jack Extravaganza</h1>
 
-    <div class="control">
+      <h2 id="turn">Let's Play</h2>
+
+      <h3 id="d-score">d-score</h3>
+      <h3 id="p-score">p-score</h3>
+
+      <div id="d-cards">d-cards<img /><img /><img /><img /></div>
+      <div id="p-cards">p-cards<img /><img /><img /><img /></div>
+
       <button onclick="start">Start</button>
       <!-- start/reset button -->
       <button onclick="hitMe">Hit me</button>
       <button onclick="stay">Stay</button>
-      <!-- <button onclick="bet">Bet $5</button> -->
-    </div>
-
-    <footer>
-      <p class="message">Created by Nova Hasley</p>
-    </footer>
+    </main>
   </body>
 </html>

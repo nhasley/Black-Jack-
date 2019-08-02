@@ -1,76 +1,67 @@
+html,
 * {
+  font-family: helvetica;
   box-sizing: border-box;
 }
 
 body {
-  text-align: center;
-  margin: 0;
-  font-family: Helvetica, sans-serif;
   height: 100vh;
-  display: grid;
-  background-color: green;
-  grid-template-columns: 1fr;
-  grid-template-rows: 1fr 3fr 1fr 50px;
-  grid-template-areas:
-    "hdr"
-    "brd"
-    "btn"
-    "ftr";
-}
-
-header {
-  grid-area: hdr;
-}
-
-h1 {
   display: flex;
+  flex-direction: column;
   justify-content: center;
-}
-
-.score-board {
-  display: flex;
-  padding: 10px;
-  line-height: 25px;
-  margin: 0 auto;
-  margin-top: 10px;
-  background-color: rgb(120, 196, 140);
-  border-radius: 10%;
-  width: 30vmin;
+  align-items: center;
+  background-color: green;
 }
 
 main {
-  grid-area: brd;
-  background-color: rgb(120, 196, 140);
-  border: 1px solid yellow;
-  margin: 20px;
-  height: 55vmin;
+  display: grid;
+  grid-template-columns: 1fr 1fr 1fr 1fr 1fr 1fr;
+  grid-template-rows: 1fr 1f 1fr 5fr 1fr;
+  grid-template-areas:
+    "h1 h1 h1 h1 h1 h1"
+    "h2 h2 h2 h2 h2 h2"
+    "ds ds ds ps ps ps"
+    "dc dc dc pc pc pc"
+    "btn btn btn btn btn btn";
 }
 
-.dealer-board {
-  display: flex;
-  justify-content: flex-start;
-  margin-top: 20px;
-  margin-left: 20px;
-}
-
-.player-board {
+main * {
   display: flex;
   justify-content: center;
-  margin-top: -20px;
+  align-items: center;
 }
 
-.control {
+h1 {
+  grid-area: h1;
+  text-align: center;
+}
+h2 {
+  grid-area: h2;
+}
+#d-score {
+  grid-area: ds;
+}
+#p-score {
+  grid-area: ps;
+}
+#d-cards {
+  grid-area: dc;
+  height: 50vmin;
+}
+#p-cards {
+  grid-area: pc;
+  height: 50vmin;
+}
+/* main .button {
   grid-area: btn;
-}
+}*/
 
-footer {
-  grid-area: ftr;
+button * {
+  display: flex;
+  align-items: center;
 }
-
 button {
-  padding: 10px;
-  margin: 0 10px;
-  border-radius: 10%;
+  grid-column: span 2;
 }
 
 /* CARD CSS */
