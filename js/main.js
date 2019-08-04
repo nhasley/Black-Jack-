@@ -33,8 +33,7 @@ document.getElementById("message");
 
 document.getElementById("hit").addEventListener("click", crdHit);
 function crdHit() {
-  alert("Hello");
-  pCards.push(); //make get to pull 1 card from shuffledDeck
+  alert(pCards.push(shuffledDeck.pop())); //alert counting. not working..shuffledDeck.pop() works in console.log
 }
 document.getElementById("stay").addEventListener("click", stayFunc);
 function stayFunc() {
@@ -44,8 +43,8 @@ function stayFunc() {
 
 document.getElementById("start").addEventListener("click", startFunc);
 function startFunc() {
-  dCards = []; //get to pop 2 cards from shuffledDeck
-  pCards = []; //get to pop 2 cards from shuffledDeck
+  dCards = [shuffledDeck.pop(), shuffledDeck.shift()];
+  pCards = [shuffledDeck.pop(), shuffledDeck.shift()];
   renderShuffledDeck(); //or shuffedDeck
 }
 
