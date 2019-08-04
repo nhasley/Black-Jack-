@@ -1,3 +1,4 @@
+//defining elements
 var money = 100;
 var cards = [];
 var dCards = [];
@@ -5,23 +6,7 @@ var pCards = [];
 var bet = 10;
 var btnBet = document.getElementsByClassName("btnBet");
 
-document.getElementById("hit").addEventListener("click", crdHit);
-function crdHit() {
-  var random = values[Math.floor(Math.random() * values.length)];
-  //alert(random);
-  document.getElementById("message").innerHTML = random;
-}
-
-document.getElementById("stay").addEventListener("click", stayFunc);
-function stayFunc() {
-  alert("Hello");
-  return;
-}
-document.getElementById("start").addEventListener("click", startFunc);
-function startFunc() {
-  alert("Hello");
-}
-
+const suits = ["s", "d", "c", "h"];
 const values = [
   "02",
   "03",
@@ -38,18 +23,30 @@ const values = [
   "A"
 ];
 var randVal = values[Math.floor(Math.random() * values.length)];
-
-const suits = ["s", "d", "c", "h"];
 var randSuit = suits[Math.floor(Math.random() * suits.length)];
 
-function loopRand() {
-  for (i = 0; i <= 5; i++) {
-    function rCard() {
-      return `${randSuit}${randVal}`;
-    }
-    pCards.push;
-  }
+//getElementsById
+document.getElementById("message");
+function status(){
+  if(!gameStarted)
 }
+
+
+document.getElementById("hit").addEventListener("click", crdHit);
+// function crdHit() {
+//   var random = values[Math.floor(Math.random() * values.length)];
+//   //alert(random);
+//   document.getElementById("message").innerHTML = random;
+// }
+document.getElementById("stay").addEventListener("click", stayFunc);
+// function stayFunc() {
+//   alert("Hello");
+//   return;
+// }
+document.getElementById("start").addEventListener("click", startFunc);
+// function startFunc() {
+//   alert("Hello");
+// }
 
 // ------
 // const cards = {
@@ -90,6 +87,16 @@ function loopRand() {
 
 // //needs work
 // ----------------------
+// function loopRand() {
+//   pCards = [];
+//   for (i = 0; i <= 5; i++) {
+//     function rCard() {
+//       return `${randSuit}${randVal}`;
+//     }
+//     pCards.push;
+//   }
+// }
+
 // var cardEl = document.querySelector(`.card${suits}${values}`);
 // var suits = ["s", "d", "c", "h"];
 // var values = [02, 03, 04, 05, 06, 07, 08, 09, 10, "J", "Q", "K", "A"];
