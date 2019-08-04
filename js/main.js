@@ -79,83 +79,30 @@ function renderShuffledDeck() {
   renderDeckInContainer(shuffledDeck, shuffledContainer);
 }
 
-// ------
-// const cards = {
-//     suit:
-//     val:
-//     amt:
-// },
-// -----
-// class cards {
-//   constructor() {
-//     this.deck = [];
-//     const suits = ["s", "d", "c", "h"];
-//     const values = [
-//       "02",
-//       "03",
-//       "04",
-//       "05",
-//       "06",
-//       "07",
-//       "08",
-//       "09",
-//       "10",
-//       "J",
-//       "Q",
-//       "K",
-//       "A"
-//     ];
+function renderDeckInContainer(deck, container) {
+  container.innerHTML = "";
+  // Let's build the cards as a string of HTML
+  var cardsHtml = deck.reduce(function(html, card) {
+    return html + `<div class="card ${card.face}"></div>`;
+  }, "");
+  container.innerHTML = cardsHtml;
+}
 
-//     for (let suit in suits) {
-//       for (let value in values) {
-//         this.deck.push(`${suits[suit]}${values[value]}`);
-//       }
-//     }
-//   }
-// }
-// const deck1 = new Deck();
-// console.log(deck1.deck);
+// ----?
+let card = function() {
+  return shuffledDeck.pop();
+};
+playerContainer = document.getElementsById("p-cards");
+dealerContainer = document.getElementsById("d-cards");
+renderDeckInContainer(card, playerContainer);
+renderDeckInContainer(card, dealerContainer);
 
 // //needs work
-// ----------------------
-// function loopRand() {
-//   pCards = [];
-//   for (i = 0; i <= 5; i++) {
-//     function rCard() {
-//       return `${randSuit}${randVal}`;
-//     }
-//     pCards.push;
-//   }
-// }
-
-// var cardEl = document.querySelector(`.card${suits}${values}`);
-// var suits = ["s", "d", "c", "h"];
-// var values = [02, 03, 04, 05, 06, 07, 08, 09, 10, "J", "Q", "K", "A"];
-// let deck = [];
-// var board, turn, winner;
-// var cards = [];
-// var player = [];
-// var dealer = [];
-// var strtTotl = 100;
-// var curBet = 5;
-// var bet = document.getElementsByClassName("bet1");
-
-// function createDeck(){
-//     for
-//     deck.push()
-// }
 
 // //learned in class. repl(https://repl.it/@NovaHasley/hw-array-methods). It is last function.
 // const dealRandom = deck.sort(function(){
 //     return Math.random() - .5;
 // });
-
-// function createBoard(){
-//     for(var i = 0; i < deck.length; i++)
-//     cardEl
-// }
-
-// function crdAmt(){
 
 // switch (values){
 //     case 02:
