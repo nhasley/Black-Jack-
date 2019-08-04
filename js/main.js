@@ -1,28 +1,66 @@
 //defining elements
 var money = 100;
-var cards = [];
 var dCards = [];
 var pCards = [];
 var bet = 10;
 var btnBet = document.getElementsByClassName("btnBet");
 
-var suits = ['s', 'c', 'd', 'h'];
-var ranks = ['02', '03', '04', '05', '06', '07', '08', '09', '10', 'J', 'Q', 'K', 'A'];
+var suits = ["s", "c", "d", "h"];
+var ranks = [
+  "02",
+  "03",
+  "04",
+  "05",
+  "06",
+  "07",
+  "08",
+  "09",
+  "10",
+  "J",
+  "Q",
+  "K",
+  "A"
+];
+
+//getElementsById
+document.getElementById("message");
+// function status(){
+//   if(!gameStarted)
+// }
+
+document.getElementById("hit").addEventListener("click", crdHit);
+function crdHit() {
+  alert("Hello");
+}
+document.getElementById("stay").addEventListener("click", stayFunc);
+function stayFunc() {
+  alert("Hello");
+  return;
+}
+document.getElementById("start").addEventListener("click", startFunc);
+function startFunc() {
+  alert("Hello");
+}
+
+// test
+function buildMasterDeck() {
+  var deck = [];
+  suits.forEach(function(suit) {
+    ranks.forEach(function(rank) {
+      deck.push({
+        // the 'face' property maps to the CSS classes for cards
+        face: `${suit}${rank}`,
+        // the 'value' property is set for blackjack, not war
+        value: Number(rank) || (rank === "A" ? 11 : 10)
+      });
+    });
+  });
+  return deck;
+}
 
 // build a 'master' deck of 'card' objects used to create shuffled decks
 var masterDeck = buildMasterDeck();
-renderDeckInContainer(masterDeck, document.getElementById('master-deck-container'));
 
-/*----- app's state (variables) -----*/
-var shuffledDeck;
-
-/*----- cached element references -----*/
-var shuffledContainer = document.getElementById('shuffled-deck-container');
-
-/*----- event listeners -----*/
-document.querySelector('button').addEventListener('click', renderShuffledDeck);
-
-/*----- functions -----*/
 function renderShuffledDeck() {
   // create a copy of the masterDeck (leave masterDeck untouched!)
   var tempDeck = masterDeck.slice();
@@ -33,54 +71,6 @@ function renderShuffledDeck() {
   }
   renderDeckInContainer(shuffledDeck, shuffledContainer);
 }
-
-function renderDeckInContainer(deck, container) {
-  container.innerHTML = '';
-  // Let's build the cards as a string of HTML
-  var cardsHtml = deck.reduce(function(html, card) {
-    return html + `<div class="card ${card.face}"></div>`;
-  }, '');
-  container.innerHTML = cardsHtml;
-}
-
-function buildMasterDeck() {
-  var deck = [];
-  suits.forEach(function(suit) {
-    ranks.forEach(function(rank) {
-      deck.push({
-        // the 'face' property maps to the CSS classes for cards
-        face: `${suit}${rank}`,
-        // the 'value' property is set for blackjack, not war
-        value: Number(rank) || (rank === 'A' ? 11 : 10)
-      });
-    });
-  });
-  return deck;
-}
-renderShuffledDeck();
-
-//getElementsById
-document.getElementById("message");
-function status(){
-  if(!gameStarted)
-}
-
-
-document.getElementById("hit").addEventListener("click", crdHit);
-// function crdHit() {
-//   var random = values[Math.floor(Math.random() * values.length)];
-//   //alert(random);
-//   document.getElementById("message").innerHTML = random;
-// }
-document.getElementById("stay").addEventListener("click", stayFunc);
-// function stayFunc() {
-//   alert("Hello");
-//   return;
-// }
-document.getElementById("start").addEventListener("click", startFunc);
-// function startFunc() {
-//   alert("Hello");
-// }
 
 // ------
 // const cards = {
