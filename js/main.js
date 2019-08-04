@@ -25,11 +25,15 @@ var ranks = [
   "A"
 ];
 
+var start = true,
+  stop = false;
 //getElementsById
 document.getElementById("message");
-// function status(){
-//   if(!start)
-// }
+function status() {
+  if (!start) {
+    message.innerHTML = "Let's Play";
+  }
+}
 
 document.getElementById("hit").addEventListener("click", crdHit);
 function crdHit() {
@@ -37,12 +41,15 @@ function crdHit() {
 }
 document.getElementById("stay").addEventListener("click", stayFunc);
 function stayFunc() {
-  alert("Hello");
+  stop = true;
+
   return;
 }
 
 document.getElementById("start").addEventListener("click", startFunc);
 function startFunc() {
+  start = true;
+  stop = false;
   dCards = [shuffledDeck.pop(), shuffledDeck.shift()];
   pCards = [shuffledDeck.pop(), shuffledDeck.shift()];
   renderShuffledDeck(); //or shuffedDeck
@@ -89,13 +96,21 @@ function renderDeckInContainer(deck, container) {
 }
 
 // ----?
-let card = function() {
+let card1 = function() {
   return shuffledDeck.pop();
 };
-playerContainer = document.getElementsById("p-cards");
-dealerContainer = document.getElementsById("d-cards");
-renderDeckInContainer(card, playerContainer);
-renderDeckInContainer(card, dealerContainer);
+let card2 = function() {
+  return shuffledDeck.pop();
+};
+var playerContainer = document.getElementsById("p-cards");
+var dealerContainer = document.getElementsById("d-cards");
+renderDeckInContainer(card1, playerContainer);
+renderDeckInContainer(card2, dealerContainer);
+// ------
+
+///add players Cards
+const playerAmt = obj => pCards.values(obj).reduce((a, b) => a + b);
+const dealerAmt = obj => dCards.values(obj).reduce((a, b) => a + b);
 
 // //needs work
 
