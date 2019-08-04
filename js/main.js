@@ -2,6 +2,9 @@
 var money = 100;
 var dCards = [];
 var pCards = [];
+var dScore = [];
+var pScore = [];
+var deck = [];
 var bet = 10;
 var btnBet = document.getElementsByClassName("btnBet");
 
@@ -25,21 +28,25 @@ var ranks = [
 //getElementsById
 document.getElementById("message");
 // function status(){
-//   if(!gameStarted)
+//   if(!start)
 // }
 
 document.getElementById("hit").addEventListener("click", crdHit);
 function crdHit() {
   alert("Hello");
+  pCards.push(); //make get to pull 1 card from shuffledDeck
 }
 document.getElementById("stay").addEventListener("click", stayFunc);
 function stayFunc() {
   alert("Hello");
   return;
 }
+
 document.getElementById("start").addEventListener("click", startFunc);
 function startFunc() {
-  alert("Hello");
+  dCards = []; //get to pop 2 cards from shuffledDeck
+  pCards = []; //get to pop 2 cards from shuffledDeck
+  renderShuffledDeck(); //or shuffedDeck
 }
 
 // test
@@ -60,7 +67,8 @@ function buildMasterDeck() {
 
 // build a 'master' deck of 'card' objects used to create shuffled decks
 var masterDeck = buildMasterDeck();
-
+var shuffledDeck;
+renderShuffledDeck();
 function renderShuffledDeck() {
   // create a copy of the masterDeck (leave masterDeck untouched!)
   var tempDeck = masterDeck.slice();
@@ -209,12 +217,6 @@ function renderShuffledDeck() {
 
 //     -querySelector for cards and attach the value?
 //     -create objects?
-
-// function start(pBet){
-//     cards = [];
-//     player = [];
-//     dealer = [];
-// }
 
 // function hitMe(evt){
 //     var idx = parsInt(evt.target.id.raplace)
