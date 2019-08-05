@@ -4,10 +4,8 @@ var pCards = [];
 var dTotal = 0;
 var pTotal = 0;
 var deck = [];
-
-// var money = 100;
-// var bet = 10;
-// var btnBet = document.getElementsByClassName("btnBet");
+var start = true;
+var stop = false;
 
 var suits = ["s", "c", "d", "h"];
 var ranks = [
@@ -26,26 +24,57 @@ var ranks = [
   "A"
 ];
 
-var start = true,
-  stop = false;
 //getElementsById
-document.getElementById("message");
-function status() {
-  if (!start) {
-    message.innerHTML = "Let's Play";
+var msg = document.getElementById("message");
+
+function cardString(card) {
+  return card.value + " of " + card.rank;
+}
+
+function gameBoard() {
+  newScore();
+  let dString = "";
+  for(let i = 0; i < dCards.length; i++) {
+    dString += cardString(dCards[i]);
   }
+  let pString = "";
+  for (let i = 0; i < pCards.length; i++) {
+    pString += cardString(dCards[i]);
+  }
+
+  msg.innerText =
+  "Dealer has:\n" + //not needed
+  dString + //not needed
+  "(score: " +
+  dTotal +
+  ")\n\n" +
+  "Player has:\n" +
+  pString +
+  "(score: " +
+  pTotal +
+  ")\n\n";
+
+if (stop) {
+  if (win) {
+    msg.innerText += "YOU WIN!";
+  } else {
+    msg.innerText += "DEALER WINS";
+  }
+}
 }
 
 document.getElementById("hit").addEventListener("click", crdHit);
 function crdHit() {
   pCards.push(shuffledDeck.pop());
   cTotal();
+  gameBoard();
 }
 
 document.getElementById("stay").addEventListener("click", stayFunc);
 function stayFunc() {
   stop = true;
-
+  cTotal();
+  gameBoard();
   return;
 }
 
@@ -53,12 +82,12 @@ document.getElementById("start").addEventListener("click", startFunc);
 function startFunc() {
   start = true;
   stop = false;
+  renderShuffledDeck(); //or shuffedDeck//
   dCards = [shuffledDeck.pop(), shuffledDeck.shift()];
   pCards = [shuffledDeck.pop(), shuffledDeck.shift()];
-  renderShuffledDeck(); //or shuffedDeck//
+  gameBoard();
 }
 
-// test
 function buildMasterDeck() {
   var deck = [];
   suits.forEach(function(suit) {
@@ -85,6 +114,7 @@ function renderShuffledDeck() {
   }
   // renderDeckInContainer(shuffledDeck, shuffledContainer);
 }
+
 // var pContainer = document.getElementById("p-cards");
 // function renderCards(deck, container) {
 //   container.innerHTML = "";
@@ -102,35 +132,35 @@ function renderShuffledDeck() {
 // // -------------
 
 function cardVal(card){
-  switch (values){
+  switch (card.value){
     case "A":
       return 1;
       break;
-    case 02:
+    case "02":
       return 2;
       break;
-    case 03:
+    case "03":
       return 3;
       break;
-    case 04:
+    case "04":
       return 4;
       break;
-    case 05:
+    case "05":
       return 5;
       break;
-    case 06:
+    case "06":
       return 6;
       break;
-    case 07:
+    case "07":
       return 7;
       break;
-    case 08:
+    case "08":
       return 8;
       break;
-    case 09:
+    case "09":
       return 9;
       break;
-    case 10:
+    case "10":
     case "J":
     case "Q":
     case "K":
@@ -162,12 +192,15 @@ function newScore() {
 function cTotal() {
   newScore();
   if(dTotal < pTotal && dTotal <= 21) {
+    //needs editing
     dCards.push(shuffledDeck.pop());
     newScore();
   }
   if(pTotal > 21) {
+    win = false;
     stop = true;
   } else if (dTotal > 21){
+    win = true;
     stop = true;
   } else if (stop) {
     if(pTotal > dTotal) {
