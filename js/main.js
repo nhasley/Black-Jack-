@@ -2,8 +2,8 @@
 var money = 100;
 var dCards = [];
 var pCards = [];
-var dScore = [];
-var pScore = [];
+var dScore = 0;
+var pScore = 0;
 var deck = [];
 var bet = 10;
 var btnBet = document.getElementsByClassName("btnBet");
@@ -37,8 +37,71 @@ function status() {
 
 document.getElementById("hit").addEventListener("click", crdHit);
 function crdHit() {
-  alert(pCards.push(shuffledDeck.pop())); //alert counting. not working..shuffledDeck.pop() works in console.log
+  pCards.push(shuffledDeck.pop());
+  cardTotal();
 }
+
+function pullScore(array){
+  let score = 0;
+  let ace = false;
+  for(let i = 0; i < array.length; i++){ //use reduce instead?
+    let card = array[i];
+    score += cardVal(card);
+    if(card.value == "A"){
+      ace = true;
+    }
+    if(ace && score + 10 <= 21){ //if there's an ace and score+10 is less than 21
+      return score + 10;
+    }
+  }
+  return score;
+}
+
+function newScore() {
+  dScore = pullScore(dCards);
+  pScore = pullScore(pCards);
+}
+
+function cardVal(card){
+switch (values){
+  case "A":
+    return 1;
+  case 02:
+    return 2;
+    break;
+  case 03:
+    return 3;
+    break;
+  case 04:
+    return 4;
+    break;
+  case 05:
+    return 5;
+    break;
+  case 06:
+    return 6;
+    break;
+  case 07:
+    return 7;
+    break;
+  case 08:
+    return 8;
+    break;
+  case 09:
+    return 9;
+    break;
+  case 10:
+  case "J":
+  case "Q":
+  case "K":
+    return 1);
+    break;
+}
+
+function cardTotal() {
+  if(dScore)
+}
+
 document.getElementById("stay").addEventListener("click", stayFunc);
 function stayFunc() {
   stop = true;
@@ -71,46 +134,44 @@ function buildMasterDeck() {
   return deck;
 }
 
-// build a 'master' deck of 'card' objects used to create shuffled decks
 var masterDeck = buildMasterDeck();
 var shuffledDeck;
 renderShuffledDeck();
 function renderShuffledDeck() {
-  // create a copy of the masterDeck (leave masterDeck untouched!)
   var tempDeck = masterDeck.slice();
   shuffledDeck = [];
   while (tempDeck.length) {
     var rndIdx = Math.floor(Math.random() * tempDeck.length);
     shuffledDeck.push(tempDeck.splice(rndIdx, 1)[0]);
   }
-  renderDeckInContainer(shuffledDeck, shuffledContainer);
+  // renderDeckInContainer(shuffledDeck, shuffledContainer);
 }
 
-function renderDeckInContainer(deck, container) {
-  container.innerHTML = "";
-  // Let's build the cards as a string of HTML
-  var cardsHtml = deck.reduce(function(html, card) {
-    return html + `<div class="card ${card.face}"></div>`;
-  }, "");
-  container.innerHTML = cardsHtml;
-}
+// // function renderDeckInContainer(deck, container) {
+// //   container.innerHTML = "";
+// //   // Let's build the cards as a string of HTML
+// //   var cardsHtml = deck.reduce(function(html, card) {
+// //     return html + `<div class="card ${card.face}"></div>`;
+// //   }, "");
+// //   container.innerHTML = cardsHtml;
+// // }
 
-// ----?
-let card1 = function() {
-  return shuffledDeck.pop();
-};
-let card2 = function() {
-  return shuffledDeck.pop();
-};
-var playerContainer = document.getElementsById("p-cards");
-var dealerContainer = document.getElementsById("d-cards");
-renderDeckInContainer(card1, playerContainer);
-renderDeckInContainer(card2, dealerContainer);
-// ------
+// // ----?
+// let card1 = function() {
+//   return shuffledDeck.pop();
+// };
+// let card2 = function() {
+//   return shuffledDeck.pop();
+// };
+// var playerContainer = document.getElementsById("p-cards");
+// var dealerContainer = document.getElementsById("d-cards");
+// renderDeckInContainer(card1, playerContainer);
+// renderDeckInContainer(card2, dealerContainer);
+// // ------
 
-///add players Cards
-const playerAmt = obj => pCards.values(obj).reduce((a, b) => a + b);
-const dealerAmt = obj => dCards.values(obj).reduce((a, b) => a + b);
+// ///add players Cards
+// const playerAmt = obj => pCards.values(obj).reduce((a, b) => a + b);
+// const dealerAmt = obj => dCards.values(obj).reduce((a, b) => a + b);
 
 // //needs work
 
@@ -119,47 +180,7 @@ const dealerAmt = obj => dCards.values(obj).reduce((a, b) => a + b);
 //     return Math.random() - .5;
 // });
 
-// switch (values){
-//     case 02:
-//         cards.push('2');
-//         break;
-//     case 03:
-//         cards.push('3');
-//         break;
-//     case 04:
-//         cards.push('4');
-//         break;
-//     case 05:
-//         cards.push('5');
-//         break;
-//     case 06:
-//         cards.push('6');
-//         break;
-//     case 07:
-//         cards.push('7');
-//         break;
-//     case 08:
-//         cards.push('8');
-//         break;
-//     case 09:
-//         cards.push('9');
-//         break;
-//     case 10:
-//     case "J":
-//     case "Q":
-//     case "K":
-//         cards.push('10');
-//         break;
-//     case "A":
-//         var answer = prompt("Would you like the value of Ace to be 1 or 11?")
-//         function(){
-//             if(crdTotl === '1'){
-//                 cards.push('1');
-//             } else {
-//                 cards.push('11')
-//             }
-//         }
-//         break;
+// 
 // }
 // }
 
