@@ -55,7 +55,7 @@ function startFunc() {
   stop = false;
   dCards = [shuffledDeck.pop(), shuffledDeck.shift()];
   pCards = [shuffledDeck.pop(), shuffledDeck.shift()];
-  renderShuffledDeck(); //or shuffedDeck
+  renderShuffledDeck(); //or shuffedDeck//
 }
 
 // test
@@ -85,15 +85,15 @@ function renderShuffledDeck() {
   }
   // renderDeckInContainer(shuffledDeck, shuffledContainer);
 }
-var pContainer = document.getElementById("p-cards");
-function renderCards(deck, container) {
-  container.innerHTML = "";
-  var cardsHtml = shuffledDeck.reduce(function(html, card) {
-    return html + `<div class="card ${card.face}"></div>`;
-  }, "");
-  container.innerHTML = cardsHtml;
-}
-var card = renderCards(shuffledDeck.pop(), pContainer);
+// var pContainer = document.getElementById("p-cards");
+// function renderCards(deck, container) {
+//   container.innerHTML = "";
+//   var cardsHtml = shuffledDeck.reduce(function(html, card) {
+//     return html + `<div class="card ${card.face}"></div>`;
+//   }, "");
+//   container.innerHTML = cardsHtml;
+// }
+// var card = renderCards(shuffledDeck.pop(), pContainer);
 
 // var pContainer = document.getElementById('p-cards');
 // var cardEl = document.createElement('div');
@@ -101,65 +101,82 @@ var card = renderCards(shuffledDeck.pop(), pContainer);
 
 // // -------------
 
-// function cardVal(card){
-//   switch (values){
-//     case "A":
-//       return 1;
-//       break;
-//     case 02:
-//       return 2;
-//       break;
-//     case 03:
-//       return 3;
-//       break;
-//     case 04:
-//       return 4;
-//       break;
-//     case 05:
-//       return 5;
-//       break;
-//     case 06:
-//       return 6;
-//       break;
-//     case 07:
-//       return 7;
-//       break;
-//     case 08:
-//       return 8;
-//       break;
-//     case 09:
-//       return 9;
-//       break;
-//     case 10:
-//     case "J":
-//     case "Q":
-//     case "K":
-//       return 10;
-//       break;
-//   }
+function cardVal(card){
+  switch (values){
+    case "A":
+      return 1;
+      break;
+    case 02:
+      return 2;
+      break;
+    case 03:
+      return 3;
+      break;
+    case 04:
+      return 4;
+      break;
+    case 05:
+      return 5;
+      break;
+    case 06:
+      return 6;
+      break;
+    case 07:
+      return 7;
+      break;
+    case 08:
+      return 8;
+      break;
+    case 09:
+      return 9;
+      break;
+    case 10:
+    case "J":
+    case "Q":
+    case "K":
+      return 10;
+      break;
+  }
 
-// function pullScore(array){
-//   let score = 0;
-//   let ace = false;
-//   for(let i = 0; i < array.length; i++){ //use reduce instead?
-//     let card = array[i];
-//     score += cardVal(card);
-//     if(card.value == "A"){
-//       ace = true;
-//     }
-//     if(ace && score + 10 <= 21){ //if there's an ace and score+10 is less than 21
-//       return score + 10;
-//     }
-//   }
-//   return score;
-// }
+function pullScore(array){
+  let score = 0;
+  let ace = false;
+  for(let i = 0; i < array.length; i++){ //use reduce instead?
+    let card = array[i];
+    score += cardVal(card);
+    if(card.value == "A"){
+      ace = true;
+    }
+    if(ace && score + 10 <= 21){ //if there's an ace and score+10 is less than 21
+      return score + 10;
+    }
+  }
+  return score;
+}
 
-// function newScore() {
-//   dTotal = pullScore(dCards);
-//   pTotal = pullScore(pCards);
-// }
+function newScore() {
+  dTotal = pullScore(dCards);
+  pTotal = pullScore(pCards);
+}
 
-// // function cTotal() {}
+function cTotal() {
+  newScore();
+  if(dTotal < pTotal && dTotal <= 21) {
+    dCards.push(shuffledDeck.pop());
+    newScore();
+  }
+  if(pTotal > 21) {
+    stop = true;
+  } else if (dTotal > 21){
+    stop = true;
+  } else if (stop) {
+    if(pTotal > dTotal) {
+      win = true;
+    } else {
+      win = false;
+    }
+  }
+}
 
 // // -----------------------
 
