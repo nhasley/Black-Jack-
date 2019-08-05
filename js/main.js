@@ -66,6 +66,7 @@ function cardVal(card){
 switch (values){
   case "A":
     return 1;
+    break;
   case 02:
     return 2;
     break;
@@ -94,7 +95,7 @@ switch (values){
   case "J":
   case "Q":
   case "K":
-    return 1);
+    return 10;
     break;
 }
 
