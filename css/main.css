@@ -11,6 +11,7 @@ body {
   justify-content: center;
   align-items: center;
   background-color: green;
+  font-weight: 800;
 }
 
 main {
@@ -47,7 +48,7 @@ h2 {
 }
 #message {
   grid-area: pc;
-
+  text-align: center;
   height: 50vmin;
   background-color: yellowgreen;
 }

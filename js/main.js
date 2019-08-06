@@ -31,30 +31,30 @@ var ranks = [
 
 var msg = document.getElementById("message");
 
-function renderCard(card) {
-  return `${card.rank}${card.value}`;
-}
-
-// function renderCard(deck, container) {
-//   container.innerHTML = "";
-//   var cardsHtml = deck.reduce(function(html, card) {
-//     return html + `<div class="card ${card.rank}${card.value}"></div>`;
-//   }, "");
-//   container.innerHTML = cardsHtml;
+// function renderCard(card) {
+//   return `${card.rank}${card.value}`;
 // }
+
+function renderCard(deck, container) {
+  container.innerHTML = "";
+  var cardsHtml = deck.reduce(function(html, card) {
+    return html + `<div class="card ${card.rank}${card.value}"></div>`;
+  }, "");
+  container.innerHTML = cardsHtml;
+}
 
 function gameBoard() {
   newScore();
   let dString = "";
   for (let i = 0; i < dCards.length; i++) {
-    dString += renderCard(dCards[i]); //renderCard(dCards, dCon) <--replace when rendering deck
+    dString += renderCard(dCards, dCon); //renderCard(dCards[i]) <--if you want to render ${card.rank}${card.value}
   }
   let pString = "";
   for (let i = 0; i < pCards.length; i++) {
-    pString += renderCard(pCards[i]); //renderCard(pCards, pCon) <--replace when rendering deck
+    pString += renderCard(pCards, pCon); //renderCard(pCards[i]) <--if you want to render ${card.rank}${card.value}
   }
 
-  msg.innerHTML = "Dealer has:\n" + dString + "\n" + "Player has:\n" + pString;
+  msg.innerHTML = `Dealer has:\n ${dString} \n Player has:\n ${pString}`;
 
   dScore.innerText = "Dealer score: " + dTotal;
   pScore.innerText = "Player score: " + pTotal;
@@ -173,8 +173,7 @@ function newScore() {
 
 function cTotal() {
   newScore();
-  if (dTotal < pTotal && dTotal <= 21) {
-    //was in string(&& pTotal <= 21)
+  if (dTotal < pTotal && dTotal <= 21 && pTotal <= 21) {
     dCards.push(deck.shift());
     newScore();
   }
