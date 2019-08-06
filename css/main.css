@@ -2,6 +2,7 @@ html,
 * {
   font-family: helvetica;
   box-sizing: border-box;
+  font-family: "Grenze", serif;
 }
 
 body {
@@ -10,7 +11,8 @@ body {
   flex-direction: column;
   justify-content: center;
   align-items: center;
-  background-color: green;
+  background-color: #1d6600;
+  background-image: url("https://www.transparenttextures.com/patterns/45-degree-fabric-dark.png");
   font-weight: 800;
 }
 
@@ -50,7 +52,18 @@ h2 {
   grid-area: pc;
   text-align: center;
   height: 50vmin;
-  background-color: yellowgreen;
+  border: 10px solid #a0522d;
+  background-color: #54de59;
+  background-image: url("https://www.transparenttextures.com/patterns/45-degree-fabric-dark.png");
+}
+
+#d-cards {
+  display: flex;
+  justify-content: flex-start;
+}
+#p-cards {
+  display: flex;
+  justify-content: flex-end;
 }
 
 img {

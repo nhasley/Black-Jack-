@@ -54,7 +54,7 @@ function gameBoard() {
     pString += renderCard(pCards, pCon); //renderCard(pCards[i]) <--if you want to render ${card.rank}${card.value}
   }
 
-  msg.innerHTML = `Dealer has:\n ${dString} \n Player has:\n ${pString}`;
+  msg.innerHTML = `Dealer has:\n\ ${dString} \n Player has:\n ${pString}`;
 
   dScore.innerText = "Dealer score: " + dTotal;
   pScore.innerText = "Player score: " + pTotal;
