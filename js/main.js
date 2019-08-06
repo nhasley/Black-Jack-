@@ -29,11 +29,10 @@ var ranks = [
   "A"
 ];
 
-//getElementsById
 var msg = document.getElementById("message");
 
 function renderCard(card) {
-  return `${card.value}${card.rank}`;
+  return `${card.rank}${card.value}`;
 }
 
 // function renderCard(deck, container) {
@@ -45,33 +44,33 @@ function renderCard(card) {
 // }
 
 function gameBoard() {
-  newScore();////ADD TO SEPARATE FUNCTION
+  newScore();
   let dString = "";
-  for(let i = 0; i < dCards.length; i++) {
-    dString += renderCard(dCards[i]);//renderCard(dCards, Con) <--replace when rendering deck
+  for (let i = 0; i < dCards.length; i++) {
+    dString += renderCard(dCards[i]); //renderCard(dCards, dCon) <--replace when rendering deck
   }
   let pString = "";
   for (let i = 0; i < pCards.length; i++) {
-    pString += renderCard(dCards[i]);//renderCard(pCards, pCon) <--replace when rendering deck
+    pString += renderCard(pCards[i]); //renderCard(pCards, pCon) <--replace when rendering deck
   }
 
-  msg.innerText = "Dealer has:\n" + dString + "\n" + "Player has:\n" + pString;
+  msg.innerHTML = "Dealer has:\n" + dString + "\n" + "Player has:\n" + pString;
 
   dScore.innerText = "Dealer score: " + dTotal;
   pScore.innerText = "Player score: " + pTotal;
 
-if (stop) {
-  if (win) {
-    msg.innerText += "YOU WIN!";
-  } else {
-    msg.innerText += "DEALER WINS";
+  if (stop) {
+    if (win) {
+      msg.innerText += "\n YOU WIN!";
+    } else {
+      msg.innerText += "\n DEALER WINS";
+    }
   }
-}
 }
 
 document.getElementById("hit").addEventListener("click", crdHit);
 function crdHit() {
-  pCards.push(deck.pop());
+  pCards.push(deck.shift());
   cTotal();
   gameBoard();
 }
@@ -88,13 +87,12 @@ document.getElementById("start").addEventListener("click", startFunc);
 function startFunc() {
   start = true;
   stop = false;
-  deck = buildMasterDeck(); 
-  shuffleDeck(deck); 
-  dCards = [deck.pop(), shuffledDeck.shift()];
-  pCards = [deck.pop(), shuffledDeck.shift()];
+  deck = buildMasterDeck();
+  shuffleDeck(deck);
+  dCards = [deck.shift(), deck.shift()];
+  pCards = [deck.shift(), deck.shift()];
   gameBoard();
 }
-
 function buildMasterDeck() {
   let deck = [];
   for (let rankIdx = 0; rankIdx < suits.length; rankIdx++) {
@@ -117,8 +115,8 @@ function shuffleDeck(deck) {
   }
 }
 
-function cardVal(card){
-  switch (card.value){
+function cardVal(card) {
+  switch (card.value) {
     case "A":
       return 1;
       break;
@@ -150,17 +148,18 @@ function cardVal(card){
       return 10;
       break;
   }
+}
 
-function pullScore(array){
+function pullScore(array) {
   let score = 0;
   let ace = false;
-  for(let i = 0; i < array.length; i++){ //use reduce instead?
+  for (let i = 0; i < array.length; i++) {
     let card = array[i];
     score += cardVal(card);
-    if(card.value == "A"){
+    if (card.value == "A") {
       ace = true;
     }
-    if(ace && score + 10 <= 21){ //if there's an ace and score+10 is less than 21
+    if (ace && score + 10 <= 21) {
       return score + 10;
     }
   }
@@ -174,19 +173,19 @@ function newScore() {
 
 function cTotal() {
   newScore();
-  if(dTotal < pTotal && dTotal <= 21) {
-    //needs editing
-    dCards.push(deck.pop());
+  if (dTotal < pTotal && dTotal <= 21) {
+    //was in string(&& pTotal <= 21)
+    dCards.push(deck.shift());
     newScore();
   }
-  if(pTotal > 21) {
+  if (pTotal > 21) {
     win = false;
     stop = true;
-  } else if (dTotal > 21){
+  } else if (dTotal > 21) {
     win = true;
     stop = true;
   } else if (stop) {
-    if(pTotal > dTotal) {
+    if (pTotal > dTotal) {
       win = true;
     } else {
       win = false;

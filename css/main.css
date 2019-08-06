@@ -22,7 +22,7 @@ main {
     "h1 h1 h1 h1 h1 h1"
     "h2 h2 h2 h2 h2 h2"
     "ds ds ds ps ps ps"
-    "dc dc dc pc pc pc"
+    "pc pc pc pc pc pc"
     "btn btn btn btn btn btn";
 }
 
@@ -45,14 +45,9 @@ h2 {
 #p-score {
   grid-area: ps;
 }
-#d-cards {
-  grid-area: dc;
-  display: flex;
-  height: 50vmin;
-  background-color: yellowgreen;
-}
-#p-cards {
+#message {
   grid-area: pc;
+
   height: 50vmin;
   background-color: yellowgreen;
 }
