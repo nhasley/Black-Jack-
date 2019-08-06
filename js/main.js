@@ -6,6 +6,11 @@ var pTotal = 0;
 var deck = [];
 var start = true;
 var stop = false;
+var pCon = document.getElementById("p-cards");
+var dCon = document.getElementById("d-cards");
+
+var pScore = document.getElementById("p-score");
+var dScore = document.getElementById("d-score");
 
 var suits = ["s", "c", "d", "h"];
 var ranks = [
@@ -27,32 +32,33 @@ var ranks = [
 //getElementsById
 var msg = document.getElementById("message");
 
-function cardString(card) {
-  return card.value + " of " + card.rank;
+function renderCard(card) {
+  return `${card.value}${card.rank}`;
 }
 
+// function renderCard(deck, container) {
+//   container.innerHTML = "";
+//   var cardsHtml = deck.reduce(function(html, card) {
+//     return html + `<div class="card ${card.rank}${card.value}"></div>`;
+//   }, "");
+//   container.innerHTML = cardsHtml;
+// }
+
 function gameBoard() {
-  newScore();
+  newScore();////ADD TO SEPARATE FUNCTION
   let dString = "";
   for(let i = 0; i < dCards.length; i++) {
-    dString += cardString(dCards[i]);
+    dString += renderCard(dCards[i]);//renderCard(dCards, Con) <--replace when rendering deck
   }
   let pString = "";
   for (let i = 0; i < pCards.length; i++) {
-    pString += cardString(dCards[i]);
+    pString += renderCard(dCards[i]);//renderCard(pCards, pCon) <--replace when rendering deck
   }
 
-  msg.innerText =
-  "Dealer has:\n" + //not needed
-  dString + //not needed
-  "(score: " +
-  dTotal +
-  ")\n\n" +
-  "Player has:\n" +
-  pString +
-  "(score: " +
-  pTotal +
-  ")\n\n";
+  msg.innerText = "Dealer has:\n" + dString + "\n" + "Player has:\n" + pString;
+
+  dScore.innerText = "Dealer score: " + dTotal;
+  pScore.innerText = "Player score: " + pTotal;
 
 if (stop) {
   if (win) {
@@ -65,7 +71,7 @@ if (stop) {
 
 document.getElementById("hit").addEventListener("click", crdHit);
 function crdHit() {
-  pCards.push(shuffledDeck.pop());
+  pCards.push(deck.pop());
   cTotal();
   gameBoard();
 }
@@ -82,54 +88,34 @@ document.getElementById("start").addEventListener("click", startFunc);
 function startFunc() {
   start = true;
   stop = false;
-  renderShuffledDeck(); //or shuffedDeck//
-  dCards = [shuffledDeck.pop(), shuffledDeck.shift()];
-  pCards = [shuffledDeck.pop(), shuffledDeck.shift()];
+  deck = buildMasterDeck(); 
+  shuffleDeck(deck); 
+  dCards = [deck.pop(), shuffledDeck.shift()];
+  pCards = [deck.pop(), shuffledDeck.shift()];
   gameBoard();
 }
 
 function buildMasterDeck() {
-  var deck = [];
-  suits.forEach(function(suit) {
-    ranks.forEach(function(rank) {
-      deck.push({
-        // the 'face' property maps to the CSS classes for cards
-        face: `${suit}${rank}`,
-        // the 'value' property is set for blackjack, not war
-        value: Number(rank) || (rank === "A" ? 11 : 10)
-      });
-    });
-  });
+  let deck = [];
+  for (let rankIdx = 0; rankIdx < suits.length; rankIdx++) {
+    for (let valueIdx = 0; valueIdx < ranks.length; valueIdx++) {
+      let card = {
+        rank: suits[rankIdx],
+        value: ranks[valueIdx]
+      };
+      deck.push(card);
+    }
+  }
   return deck;
 }
-var masterDeck = buildMasterDeck();
-var shuffledDeck;
-renderShuffledDeck();
-function renderShuffledDeck() {
-  var tempDeck = masterDeck.slice();
-  shuffledDeck = [];
-  while (tempDeck.length) {
-    var rndIdx = Math.floor(Math.random() * tempDeck.length);
-    shuffledDeck.push(tempDeck.splice(rndIdx, 1)[0]);
+function shuffleDeck(deck) {
+  for (let i = 0; i < deck.length; i++) {
+    let rndIdx = Math.trunc(Math.random() * deck.length);
+    let tempDeck = deck[rndIdx];
+    deck[rndIdx] = deck[i];
+    deck[i] = tempDeck;
   }
-  // renderDeckInContainer(shuffledDeck, shuffledContainer);
 }
-
-// var pContainer = document.getElementById("p-cards");
-// function renderCards(deck, container) {
-//   container.innerHTML = "";
-//   var cardsHtml = shuffledDeck.reduce(function(html, card) {
-//     return html + `<div class="card ${card.face}"></div>`;
-//   }, "");
-//   container.innerHTML = cardsHtml;
-// }
-// var card = renderCards(shuffledDeck.pop(), pContainer);
-
-// var pContainer = document.getElementById('p-cards');
-// var cardEl = document.createElement('div');
-// cardEl.classList.add("card ${card.face}")
-
-// // -------------
 
 function cardVal(card){
   switch (card.value){
@@ -160,10 +146,7 @@ function cardVal(card){
     case "09":
       return 9;
       break;
-    case "10":
-    case "J":
-    case "Q":
-    case "K":
+    default:
       return 10;
       break;
   }
@@ -193,7 +176,7 @@ function cTotal() {
   newScore();
   if(dTotal < pTotal && dTotal <= 21) {
     //needs editing
-    dCards.push(shuffledDeck.pop());
+    dCards.push(deck.pop());
     newScore();
   }
   if(pTotal > 21) {
@@ -224,10 +207,10 @@ function cTotal() {
 
 // // ----?
 // let card1 = function() {
-//   return shuffledDeck.pop();
+//   return deck.pop();
 // };
 // let card2 = function() {
-//   return shuffledDeck.pop();
+//   return deck.pop();
 // };
 // var playerContainer = document.getElementsById("p-cards");
 // var dealerContainer = document.getElementsById("d-cards");
