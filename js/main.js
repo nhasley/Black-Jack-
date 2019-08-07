@@ -1,17 +1,11 @@
 //defining elements
+var deck = [];
 var dCards = [];
 var pCards = [];
 var dTotal = 0;
 var pTotal = 0;
-var deck = [];
 var start = true;
 var stop = false;
-var pCon = document.getElementById("p-cards");
-var dCon = document.getElementById("d-cards");
-
-var pScore = document.getElementById("p-score");
-var dScore = document.getElementById("d-score");
-
 var suits = ["s", "c", "d", "h"];
 var ranks = [
   "02",
@@ -29,12 +23,15 @@ var ranks = [
   "A"
 ];
 
+var pCon = document.getElementById("p-cards");
+var dCon = document.getElementById("d-cards");
+var pScore = document.getElementById("p-score");
+var dScore = document.getElementById("d-score");
 var msg = document.getElementById("message");
 var title = document.getElementById("title");
-
-// function renderCard(card) {
-//   return `${card.rank}${card.value}`;
-// }
+document.getElementById("hit").addEventListener("click", crdHit);
+document.getElementById("stay").addEventListener("click", stayFunc);
+document.getElementById("start").addEventListener("click", startFunc);
 
 function renderCard(deck, container) {
   container.innerHTML = "";
@@ -43,7 +40,6 @@ function renderCard(deck, container) {
   }, "");
   container.innerHTML = cardsHtml;
 }
-
 function gameBoard() {
   newScore();
   renderCard(dCards, dCon);
@@ -62,23 +58,17 @@ function gameBoard() {
     }
   }
 }
-
-document.getElementById("hit").addEventListener("click", crdHit);
 function crdHit() {
   pCards.push(deck.shift());
   cTotal();
   gameBoard();
 }
-
-document.getElementById("stay").addEventListener("click", stayFunc);
 function stayFunc() {
   stop = true;
   cTotal();
   gameBoard();
   return;
 }
-
-document.getElementById("start").addEventListener("click", startFunc);
 function startFunc() {
   start = true;
   stop = false;
@@ -112,7 +102,6 @@ function shuffleDeck(deck) {
     deck[i] = tempDeck;
   }
 }
-
 function cardVal(card) {
   switch (card.value) {
     case "A":
@@ -147,7 +136,6 @@ function cardVal(card) {
       break;
   }
 }
-
 function pullScore(array) {
   let score = 0;
   let ace = false;
@@ -163,12 +151,10 @@ function pullScore(array) {
   }
   return score;
 }
-
 function newScore() {
   dTotal = pullScore(dCards);
   pTotal = pullScore(pCards);
 }
-
 function cTotal() {
   newScore();
   if (dTotal < pTotal && dTotal <= 21 && pTotal <= 21) {
