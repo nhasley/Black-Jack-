@@ -6,6 +6,7 @@
     <meta http-equiv="X-UA-Compatible" content="ie=edge" />
     <title>Black Jack Game</title>
     <link rel="stylesheet" href="css/main.css" />
+    <link href="css/card-deck-css/css/cardstarter.css" rel="stylesheet" />
     <link
       href="https://fonts.googleapis.com/css?family=Grenze&display=swap"
       rel="stylesheet"
@@ -19,10 +20,13 @@
       <h3 id="d-score">Dealer Score:</h3>
       <h3 id="p-score">Player Score:</h3>
 
-      <div id="message">
+      <div id="message"></div>
+
+      <div class="game-board">
         <div id="d-cards"></div>
         <div id="p-cards"></div>
       </div>
+
       <div class="prompt">
         <button id="start" onclick="start">Start</button>
         <button id="hit" onclick="hit">Hit me</button>

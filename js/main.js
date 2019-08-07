@@ -45,16 +45,8 @@ function renderCard(deck, container) {
 
 function gameBoard() {
   newScore();
-  let dString = "";
-  for (let i = 0; i < dCards.length; i++) {
-    dString += renderCard(dCards, dCon); //renderCard(dCards[i]) <--if you want to render ${card.rank}${card.value}
-  }
-  let pString = "";
-  for (let i = 0; i < pCards.length; i++) {
-    pString += renderCard(pCards, pCon); //renderCard(pCards[i]) <--if you want to render ${card.rank}${card.value}
-  }
-
-  msg.innerHTML = `Dealer has:\n\ ${dString} \n Player has:\n ${pString}`;
+  renderCard(dCards, dCon);
+  renderCard(pCards, pCon);
 
   dScore.innerText = "Dealer score: " + dTotal;
   pScore.innerText = "Player score: " + pTotal;
