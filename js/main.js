@@ -34,26 +34,26 @@ document.getElementById("stay").addEventListener("click", stayFunc);
 document.getElementById("start").addEventListener("click", startFunc);
 document.getElementById("classic").addEventListener("click", classic);
 document.getElementById("dance").addEventListener("click", dance);
-function dance() {
-  var dance = new Audio("Bowie-Twerk.mp3");
-  dance.play();
-  classic.stop();
-  if (document.getElementById("theme").href == "css/main.css") {
-    document.getElementById("theme").href = "css/dance.css";
-  } else {
-    document.getElementById("theme").href = "css/main.css";
-  }
-}
-function classic() {
-  var classic = new Audio("Spring_Allegro.mp3");
-  classic.play();
-  dance.stop();
-  if (document.getElementById("theme").href == "css/dance.css") {
-    document.getElementById("theme").href = "css/main.css";
-  } else {
-    document.getElementById("theme").href = "css/dance.css";
-  }
-}
+// function dance() {
+//   var dance = new Audio("Bowie-Twerk.mp3");
+//   dance.play();
+//   classic.stop();
+//   if (document.getElementById("theme").href == "css/main.css") {
+//     document.getElementById("theme").href = "css/dance.css";
+//   } else {
+//     document.getElementById("theme").href = "css/main.css";
+//   }
+// }
+// function classic() {
+//   var classic = new Audio("Spring_Allegro.mp3");
+//   classic.play();
+//   dance.stop();
+//   if (document.getElementById("theme").href == "css/dance.css") {
+//     document.getElementById("theme").href = "css/main.css";
+//   } else {
+//     document.getElementById("theme").href = "css/dance.css";
+//   }
+// }
 
 function renderCard(deck, container) {
   container.innerHTML = "";
