@@ -1,0 +1,130 @@
+html,
+* {
+  font-family: helvetica;
+  box-sizing: border-box;
+  font-family: "Grenze", serif;
+  margin: auto 0;
+}
+
+body {
+  height: 100vh;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  font-weight: 800;
+  color: yellow;
+  width: 100%;
+  height: 100%;
+  animation: NAME-YOUR-ANIMATION 1s infinite;
+}
+
+@-webkit-keyframes NAME-YOUR-ANIMATION {
+  0%,
+  49% {
+    background-color: rgb(0, 0, 0);
+  }
+  50%,
+  100% {
+    background-image: url("https://i.ytimg.com/vi/2xeYlbWEnpk/maxresdefault.jpg");
+  }
+}
+
+.game-board {
+  grid-area: g;
+  text-align: center;
+  height: 60vmin;
+  border: 10px solid blue;
+  background-color: rgba(150, 4, 150, 0.555);
+  background-image: url("https://www.transparenttextures.com/patterns/45-degree-fabric-dark.png");
+  display: grid;
+  width: 150vmin;
+  grid-template-columns: 1fr 1fr;
+  grid-template-rows: 1fr;
+  grid-template-areas: "dc pc";
+}
+
+h1,
+h3 {
+  background: black;
+}
+
+.themes {
+  display: flex;
+  justify-content: flex-start;
+  margin-left: 100px;
+  margin-top: 20px;
+}
+
+.themes h2 {
+  color: yellow;
+}
+button {
+  color: black;
+  background-color: yellow;
+  border: black;
+  margin: 10px 10px;
+}
+button:hover {
+  background-color: purple;
+  color: black;
+}
+
+main {
+  display: grid;
+  width: 150vmin;
+  grid-template-columns: 1fr 1fr 1fr 1fr 1fr 1fr;
+  grid-template-rows: 1fr 1f 1fr 5fr 1fr;
+  grid-template-areas:
+    "h1 h1 h1 h1 h1 h1"
+    "h2 h2 h2 h2 h2 h2"
+    "ds ds ds ps ps ps"
+    "g g g g g g"
+    "btn btn btn btn btn btn";
+}
+
+main * {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+h1 {
+  grid-area: h1;
+  margin: 10px 0;
+}
+
+#d-score {
+  grid-area: ds;
+}
+#p-score {
+  grid-area: ps;
+}
+
+#message {
+  grid-area: h2;
+  display: flex;
+  text-align: center;
+}
+
+#d-cards {
+  grid-area: dc;
+  display: flex;
+  justify-content: flex-start;
+  flex-wrap: wrap;
+  margin-left: 100px;
+  line-height: 5px;
+  margin-top: 20px;
+}
+#p-cards {
+  grid-area: pc;
+  display: flex;
+  justify-content: flex-starts;
+  flex-wrap: wrap;
+  line-height: 5px;
+  margin-top: 20px;
+}
+
+.prompt {
+  grid-area: btn;
+}

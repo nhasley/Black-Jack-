@@ -4,7 +4,6 @@ html,
   box-sizing: border-box;
   font-family: "Grenze", serif;
   margin: auto 0;
-  color: lightgray;
 }
 
 body {
@@ -14,8 +13,31 @@ body {
   justify-content: center;
   align-items: center;
   background-color: #1d6600;
-  background-image: url("https://www.transparenttextures.com/patterns/45-degree-fabric-dark.png");
+  background-image: url(http://www.transparenttextures.com/patterns/arabesque.png);
   font-weight: 800;
+  color: lightgray;
+}
+
+.game-board {
+  grid-area: g;
+  text-align: center;
+  height: 60vmin;
+  border: 10px solid #a0522d;
+  background-color: #54de59;
+  background-image: url("https://www.transparenttextures.com/patterns/45-degree-fabric-dark.png");
+  display: grid;
+  width: 150vmin;
+  grid-template-columns: 1fr 1fr;
+  grid-template-rows: 1fr;
+  grid-template-areas: "dc pc";
+}
+
+.themes {
+  color: black;
+  display: flex;
+  justify-content: flex-start;
+  margin-left: 100px;
+  margin-top: 20px;
 }
 
 main {
@@ -39,7 +61,7 @@ main * {
 
 h1 {
   grid-area: h1;
-  /* text-align: center; */
+  margin: 10px 0;
 }
 
 #d-score {
@@ -48,24 +70,10 @@ h1 {
 #p-score {
   grid-area: ps;
 }
-.game-board {
-  grid-area: g;
-  text-align: center;
-  height: 60vmin;
-  border: 10px solid #a0522d;
-  background-color: #54de59;
-  background-image: url("https://www.transparenttextures.com/patterns/45-degree-fabric-dark.png");
-  display: grid;
-  width: 150vmin;
-  grid-template-columns: 1fr 1fr;
-  grid-template-rows: 1fr;
-  grid-template-areas: "dc pc";
-}
 
 #message {
   grid-area: h2;
   display: flex;
-  /* justify-content: center; */
   text-align: center;
 }
 
@@ -86,25 +94,7 @@ h1 {
   line-height: 5px;
   margin-top: 20px;
 }
-/* 
-img {
-  background-color: green;
-  width: 5em;
-  height: 6.5em;
-  padding: 1px;
-} */
 
 .prompt {
   grid-area: btn;
-}
-button {
-  /* grid-column: 3/5; */
-  width: 50px;
-  margin: 10px 10px;
-  background-color: white;
-  color: black;
-}
-
-button:hover {
-  background-color: grey;
 }

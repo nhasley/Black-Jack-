@@ -32,6 +32,28 @@ var title = document.getElementById("title");
 document.getElementById("hit").addEventListener("click", crdHit);
 document.getElementById("stay").addEventListener("click", stayFunc);
 document.getElementById("start").addEventListener("click", startFunc);
+document.getElementById("classic").addEventListener("click", classic);
+document.getElementById("dance").addEventListener("click", dance);
+function dance() {
+  var dance = new Audio("Bowie-Twerk.mp3");
+  dance.play();
+  classic.stop();
+  if (document.getElementById("theme").href == "css/main.css") {
+    document.getElementById("theme").href = "css/dance.css";
+  } else {
+    document.getElementById("theme").href = "css/main.css";
+  }
+}
+function classic() {
+  var classic = new Audio("Spring_Allegro.mp3");
+  classic.play();
+  dance.stop();
+  if (document.getElementById("theme").href == "css/dance.css") {
+    document.getElementById("theme").href = "css/main.css";
+  } else {
+    document.getElementById("theme").href = "css/dance.css";
+  }
+}
 
 function renderCard(deck, container) {
   container.innerHTML = "";
@@ -51,7 +73,7 @@ function gameBoard() {
     if (win) {
       msg.innerText += "YOU WIN!";
       title.innerText = "";
-      startConfetti();
+      confetti.start(2000);
     } else {
       msg.innerText += "DEALER WINS";
       title.innerText = "";
@@ -79,7 +101,7 @@ function startFunc() {
   gameBoard();
   msg.innerText = "";
   title.innerText = "Black Jack Extravaganza";
-  stopConfetti();
+  confetti.sbtop();
 }
 function buildMasterDeck() {
   let deck = [];
