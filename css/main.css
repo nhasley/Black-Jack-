@@ -3,6 +3,8 @@ html,
   font-family: helvetica;
   box-sizing: border-box;
   font-family: "Grenze", serif;
+  margin: auto 0;
+  color: lightgray;
 }
 
 body {
@@ -63,7 +65,7 @@ h1 {
 #message {
   grid-area: h2;
   display: flex;
-  justify-contet: center;
+  /* justify-content: center; */
   text-align: center;
 }
 
@@ -100,6 +102,7 @@ button {
   width: 50px;
   margin: 10px 10px;
   background-color: white;
+  color: black;
 }
 
 button:hover {

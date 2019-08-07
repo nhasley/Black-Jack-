@@ -30,6 +30,7 @@ var ranks = [
 ];
 
 var msg = document.getElementById("message");
+var title = document.getElementById("title");
 
 // function renderCard(card) {
 //   return `${card.rank}${card.value}`;
@@ -47,15 +48,17 @@ function gameBoard() {
   newScore();
   renderCard(dCards, dCon);
   renderCard(pCards, pCon);
-
   dScore.innerText = "Dealer score: " + dTotal;
   pScore.innerText = "Player score: " + pTotal;
 
   if (stop) {
     if (win) {
-      msg.innerText += "\n YOU WIN!";
+      msg.innerText += "YOU WIN!";
+      title.innerText = "";
+      startConfetti();
     } else {
-      msg.innerText += "\n DEALER WINS";
+      msg.innerText += "DEALER WINS";
+      title.innerText = "";
     }
   }
 }
@@ -84,6 +87,9 @@ function startFunc() {
   dCards = [deck.shift(), deck.shift()];
   pCards = [deck.shift(), deck.shift()];
   gameBoard();
+  msg.innerText = "";
+  title.innerText = "Black Jack Extravaganza";
+  stopConfetti();
 }
 function buildMasterDeck() {
   let deck = [];
@@ -183,77 +189,3 @@ function cTotal() {
     }
   }
 }
-
-// // -----------------------
-
-// // function renderDeckInContainer(deck, container) {
-// //   container.innerHTML = "";
-// //   // Let's build the cards as a string of HTML
-// //   var cardsHtml = deck.reduce(function(html, card) {
-// //     return html + `<div class="card ${card.face}"></div>`;
-// //   }, "");
-// //   container.innerHTML = cardsHtml;
-// // }
-
-// // ----?
-// let card1 = function() {
-//   return deck.pop();
-// };
-// let card2 = function() {
-//   return deck.pop();
-// };
-// var playerContainer = document.getElementsById("p-cards");
-// var dealerContainer = document.getElementsById("d-cards");
-// renderDeckInContainer(card1, playerContainer);
-// renderDeckInContainer(card2, dealerContainer);
-// // ------
-
-// ///add players Cards
-// const playerAmt = obj => pCards.values(obj).reduce((a, b) => a + b);
-// const dealerAmt = obj => dCards.values(obj).reduce((a, b) => a + b);
-
-// //needs work
-
-// //learned in class. repl(https://repl.it/@NovaHasley/hw-array-methods). It is last function.
-// const dealRandom = deck.sort(function(){
-//     return Math.random() - .5;
-// });
-
-//
-// }
-// }
-
-// var playerVal = player.reduce(function(accumuator, currentVal){
-//     return accumuator + currentVal;
-// },0);
-// var dealerVal = dealer.reduce(function(accumuator, currentVal){
-//     return accumuator + currentVal;
-// },0);
-// ------------------
-
-//one way i could do this is make player 1 total positive to win
-//and player 2 score negative to win -Math.abs turns # to neg (do this by making a function then having neg conversion within)
-
-//     -querySelector for cards and attach the value?
-//     -create objects?
-
-// }
-// function stay(){
-//     if button is pressed then go to dealer
-
-// }
-// function dealer(){
-//     have ai function
-//     if *stay function is clicked. dealer is lower than 15 do hitMe to dealer
-// }
-
-// function curBet(){
-//     if player wins totAmt + curBet
-//     else if player loses totAmt - curBet
-//     if bet is done then hide button and replace with stay and hitMe buttons
-// }
-
-// // if player wins then add *curBet.
-// // else player loses then take away *curBet.
-// let totAmt = arr => arr.reduce(player[i])
-// totAmt <= 21 ? /*keep going */ : (alert("Bust!"))
