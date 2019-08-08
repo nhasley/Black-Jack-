@@ -97,8 +97,9 @@ function startFunc() {
   shuffleDeck(deck);
   dCards = [deck.shift(), deck.shift()];
   pCards = [deck.shift(), deck.shift()];
+
   gameBoard();
-  title.innerText = "Black Jack Extravaganza";
+  title.innerText = "Blackjack Extravaganza";
 }
 function buildMasterDeck() {
   for (let suitIdx = 0; suitIdx < suits.length; suitIdx++) {
@@ -156,16 +157,12 @@ function cardVal(card) {
 }
 function pullScore(array) {
   let score = 0;
-  let ace = false;
   for (let i = 0; i < array.length; i++) {
     let card = array[i];
     score += cardVal(card);
-    if (card.rank == "A") {
-      ace = true;
-    }
-    if (ace && score + 10 <= 21) {
-      return score + 10;
-    }
+    // if (card.rank == "A" && score + 10 <= 21) {
+    //   return score + 10;
+    // }
   }
   return score;
 }
