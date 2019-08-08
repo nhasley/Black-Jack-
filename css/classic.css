@@ -4,6 +4,7 @@ html,
   box-sizing: border-box;
   font-family: "Grenze", serif;
   margin: auto 0;
+  text-align: center;
 }
 
 body {
@@ -97,4 +98,15 @@ h1 {
 
 .prompt {
   grid-area: btn;
+}
+
+button {
+  width: 50px;
+  margin: 10px 10px;
+  background-color: white;
+  color: black;
+}
+
+button:hover {
+  background-color: grey;
 }

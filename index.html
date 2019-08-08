@@ -5,7 +5,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <meta http-equiv="X-UA-Compatible" content="ie=edge" />
     <title>Black Jack Game</title>
-    <link rel="stylesheet" href="css/main.css" id="theme"/>
+    <link id="theme" rel="stylesheet" href="css/classic.css"/>
     <link href="css/card-deck-css/css/cardstarter.css" rel="stylesheet" />
     <link
       href="https://fonts.googleapis.com/css?family=Grenze&display=swap"
@@ -17,7 +17,7 @@
   <body">
     <main>
       <h1 id="title">Black Jack Extravaganza</h1>
-      <h1 id="message" class="animated shake"></h1>
+      <h1 id="message"></h1>
       <h3 id="d-score">Dealer Score:</h3>
       <h3 id="p-score">Player Score:</h3>
 
@@ -35,8 +35,8 @@
 
       <div class="themes">
         <h2>Themes:</h2>
-        <button id="classic" onclick="changeCSS('css/main.css', 0);">Classic</button>
-        <button id="dance" onclick="changeCSS('css/dance.css', 0);">Dance</button>
+        <button id="classic" onclick="changeCSS('css/classic.css');">Classic</button>
+        <button id="dance" onclick="changeCSS('css/dance.css');">Dance</button>
       </div>
     </main>
   </body>

@@ -1,4 +1,3 @@
-//defining elements
 var deck = [];
 var dCards = [];
 var pCards = [];
@@ -34,63 +33,63 @@ document.getElementById("stay").addEventListener("click", stayFunc);
 document.getElementById("start").addEventListener("click", startFunc);
 document.getElementById("classic").addEventListener("click", classic);
 document.getElementById("dance").addEventListener("click", dance);
-// function dance() {
-//   var dance = new Audio("Bowie-Twerk.mp3");
-//   dance.play();
-//   classic.stop();
-//   if (document.getElementById("theme").href == "css/main.css") {
-//     document.getElementById("theme").href = "css/dance.css";
-//   } else {
-//     document.getElementById("theme").href = "css/main.css";
-//   }
-// }
-// function classic() {
-//   var classic = new Audio("Spring_Allegro.mp3");
-//   classic.play();
-//   dance.stop();
-//   if (document.getElementById("theme").href == "css/dance.css") {
-//     document.getElementById("theme").href = "css/main.css";
-//   } else {
-//     document.getElementById("theme").href = "css/dance.css";
-//   }
-// }
+
+var dance = new Audio("Bowie-Twerk.mp3");
+var classic = new Audio("Spring_Allegro.mp3");
+
+function dance() {
+  dance.play();
+  classic.pause();
+}
+function classic() {
+  classic.play();
+  dance.pause();
+}
+function changeCSS(file) {
+  document.getElementById("theme").setAttribute("href", file);
+}
 
 function renderCard(deck, container) {
   container.innerHTML = "";
   var cardsHtml = deck.reduce(function(html, card) {
-    return html + `<div class="card ${card.rank}${card.value}"></div>`;
+    return html + `<div class="card ${card.suit}${card.rank}"></div>`;
   }, "");
   container.innerHTML = cardsHtml;
 }
 function gameBoard() {
+  //gameBoard refresh
   newScore();
   renderCard(dCards, dCon);
   renderCard(pCards, pCon);
   dScore.innerText = "Dealer score: " + dTotal;
   pScore.innerText = "Player score: " + pTotal;
-
+  msg.innerText = "";
   if (stop) {
     if (win) {
       msg.innerText += "YOU WIN!";
+      msg.style.fontSize = "100px";
       title.innerText = "";
       confetti.start(2000);
     } else {
       msg.innerText += "DEALER WINS";
+      msg.style.fontSize = "100px";
       title.innerText = "";
     }
   }
 }
+//hit button
 function crdHit() {
   pCards.push(deck.shift());
-  cTotal();
+  cTotal(); //pull cTotal before newScore. Otherwise amount zero
   gameBoard();
 }
+//stay button
 function stayFunc() {
   stop = true;
   cTotal();
   gameBoard();
-  return;
 }
+//start button
 function startFunc() {
   start = true;
   stop = false;
@@ -99,17 +98,14 @@ function startFunc() {
   dCards = [deck.shift(), deck.shift()];
   pCards = [deck.shift(), deck.shift()];
   gameBoard();
-  msg.innerText = "";
   title.innerText = "Black Jack Extravaganza";
-  confetti.sbtop();
 }
 function buildMasterDeck() {
-  let deck = [];
-  for (let rankIdx = 0; rankIdx < suits.length; rankIdx++) {
-    for (let valueIdx = 0; valueIdx < ranks.length; valueIdx++) {
+  for (let suitIdx = 0; suitIdx < suits.length; suitIdx++) {
+    for (let rankIdx = 0; rankIdx < ranks.length; rankIdx++) {
       let card = {
-        rank: suits[rankIdx],
-        value: ranks[valueIdx]
+        suit: suits[suitIdx],
+        rank: ranks[rankIdx]
       };
       deck.push(card);
     }
@@ -125,7 +121,7 @@ function shuffleDeck(deck) {
   }
 }
 function cardVal(card) {
-  switch (card.value) {
+  switch (card.rank) {
     case "A":
       return 1;
       break;
@@ -164,7 +160,7 @@ function pullScore(array) {
   for (let i = 0; i < array.length; i++) {
     let card = array[i];
     score += cardVal(card);
-    if (card.value == "A") {
+    if (card.rank == "A") {
       ace = true;
     }
     if (ace && score + 10 <= 21) {
